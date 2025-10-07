@@ -7,6 +7,7 @@ const UserComponent = () => {
     name: '',
     age: ''
   });
+  const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -81,9 +82,51 @@ const UserComponent = () => {
     }
   }
 
+  const startEdit = (userData) => {
+    setEditingId(userData.id);
+    setUser({
+      name: userData.name,
+      age: userData.age
+    });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setUser({ name: '', age: '' });
+  };
+
+  async function updateUser(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .update({ name: user.name, age: user.age })
+        .eq('id', editingId)
+        .select();
+
+      if (error) throw error;
+
+      // Reset form and exit edit mode
+      cancelEdit();
+
+      // Refresh users list
+      fetchUsers();
+
+      console.log('User updated:', data);
+    } catch (error) {
+      setError(error.message);
+      console.error('Error updating user:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div>
-      <form onSubmit={createUser}>
+      <form onSubmit={editingId ? updateUser : createUser}>
         <input
           type="text"
           placeholder="Enter name"
@@ -103,9 +146,19 @@ const UserComponent = () => {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Creating...' : 'Create'}
+          {loading
+            ? (editingId ? 'Updating...' : 'Creating...')
+            : (editingId ? 'Update' : 'Create')
+          }
         </button>
+
+        {editingId && (
+          <button type="button" onClick={cancelEdit}>
+            Cancel
+          </button>
+        )}
       </form>
+
 
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
 
@@ -127,6 +180,9 @@ const UserComponent = () => {
               <td>
                 <button onClick={() => deleteUser(userData.id)}>
                   Delete
+                </button>
+                <button onClick={() => startEdit(userData)}>
+                  Edit
                 </button>
               </td>
             </tr>

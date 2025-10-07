@@ -82,18 +82,35 @@ button:disabled {
     color: #666;
 }
 
-/* Delete Button Styles */
+/* Button Styles for Table Actions */
 table button {
-    background-color: #d32f2f;
-    color: white;
-    border: 1px solid #b71c1c;
+    padding: 4px 8px;
     font-size: 12px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    border: 1px solid;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    margin: 0 2px;
 }
 
-table button:hover {
+table button:first-child {
+    background-color: #d32f2f;
+    color: white;
+    border-color: #b71c1c;
+}
+
+table button:first-child:hover {
     background-color: #b71c1c;
+}
+
+table button:last-child {
+    background-color: #1976d2;
+    color: white;
+    border-color: #1565c0;
+}
+
+table button:last-child:hover {
+    background-color: #1565c0;
 }
 
 /* Error message styles */
