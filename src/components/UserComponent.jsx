@@ -1,22 +1,27 @@
-import React from 'react'
-import { supabase } from './createClient'
+import React, { useEffect } from 'react'
+import { supabase } from '../createClient.js'
 import { useState } from 'react'
 
 
 const UserComponent = () => {
 
     const [users,setUsers] = useState([]);
-  console.log(users);
+
+    useEffect (()=>{
+      fetchUser()
+    })
   
   async function fetchUser() {
     const {data} = supabase
     .from('users')
     .select('*')
     setUsers(data)
+    console.log(users);
+    
   }
   return (
     <div>
-        fetchUser();
+        
     </div>
   )
 }
