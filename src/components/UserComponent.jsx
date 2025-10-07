@@ -23,7 +23,24 @@ const UserComponent = () => {
   }
   return (
     <div>
-        
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+              {users.map((user)=>
+                  <tr>
+                  <th>{user.id}</th>
+                  <th>{user.name}</th>
+                  <th>{user.age}</th>
+                  </tr>
+                )}
+          </tbody>
+        </table>
     </div>
   )
 }
