@@ -13,11 +13,11 @@ A simple React application with Supabase integration for CRUD operations on user
 
 1. Install dependencies:
 ```bash
-npm install
+bun install
 ```
 
 2. Set up environment variables:
-Create a `.env` file in the `src` directory with your Supabase credentials:
+Create a `.env` file in the root directory with your Supabase credentials:
 ```
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -25,18 +25,20 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 3. Create a `users` table in your Supabase database with appropriate columns (id, name, email, etc.)
 
+4. Make sure your Supabase table has Row Level Security (RLS) properly configured if you want to read data
+
 ## Development
 
 Start the development server:
 ```bash
-npm run dev
+bun run dev
 ```
 
 ## Build
 
 Build for production:
 ```bash
-npm run build
+bun run build
 ```
 
 ## Project Structure
@@ -44,6 +46,12 @@ npm run build
 - `src/App.jsx` - Main application component
 - `src/components/UserComponent.jsx` - User management component
 - `src/createClient.js` - Supabase client configuration
+
+## Recent Fixes
+
+- Fixed async/await issue in UserComponent where Supabase queries weren't properly awaited
+- Added dependency array to useEffect to prevent infinite re-renders
+- Ensure proper async handling when working with Supabase APIs
 
 ## Note
 
