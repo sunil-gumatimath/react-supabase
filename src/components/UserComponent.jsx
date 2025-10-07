@@ -7,17 +7,19 @@ const UserComponent = () => {
 
     const [users,setUsers] = useState([]);
 
+    console.log(users);
+
+
     useEffect (()=>{
       fetchUser()
-    })
-  
+    }, [])
+
   async function fetchUser() {
-    const {data} = supabase
+    const {data} = await supabase
     .from('users')
     .select('*')
     setUsers(data)
-    console.log(users);
-    
+    console.log(data);
   }
   return (
     <div>
