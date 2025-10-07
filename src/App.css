@@ -14,7 +14,77 @@ table{
     background-color: #1e1e1e;
 }
 
-table th,table td{
-    border: 1px solid #ddd;
-    padding: 8px; 
+table th, table td {
+    border: 1px solid #444;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+table tr:nth-child(odd) {
+    background-color: #1a1a1a;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 300px;
+    margin: 1rem auto;
+}
+
+input {
+    padding: 8px 12px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #777;
+}
+
+input::placeholder {
+    color: #777;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #555;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    background-color: #444;
+    border-color: #666;
+}
+
+button:disabled {
+    background-color: #222;
+    cursor: not-allowed;
+    color: #666;
+}
+
+/* Error message styles */
+p[style*="color: red"] {
+    color: #888;
+    margin: 8px 0;
+    font-size: 14px;
 }
