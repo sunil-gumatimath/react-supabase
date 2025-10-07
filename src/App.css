@@ -82,6 +82,20 @@ button:disabled {
     color: #666;
 }
 
+/* Delete Button Styles */
+table button {
+    background-color: #d32f2f;
+    color: white;
+    border: 1px solid #b71c1c;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+table button:hover {
+    background-color: #b71c1c;
+}
+
 /* Error message styles */
 p[style*="color: red"] {
     color: #888;

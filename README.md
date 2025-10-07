@@ -6,7 +6,7 @@ A simple React application with Supabase integration for CRUD operations on user
 
 - React 19 with Vite
 - Supabase database integration
-- User management (Create, Read operations with form handling)
+- User management (Create, Read, Delete operations with form handling)
 - Modern React hooks (useState, useEffect)
 - Dark theme UI with minimal styling
 - Form validation and error handling
@@ -57,4 +57,4 @@ bun run build
 
 ## Note
 
-This project includes functional Create and Read operations for user management. Update and Delete operations can be added as needed. The application features a complete dark theme UI with proper form handling and error management.
+This project includes functional Create, Read, and Delete operations for user management. Update operations can be added as needed. The application features a complete dark theme UI with proper form handling and error management.
