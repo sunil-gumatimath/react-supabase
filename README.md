@@ -74,7 +74,10 @@ The application will be available at `http://localhost:5173`.
 ├── src/
 │   ├── assets/
 │   ├── components/
-│   │   └── UserComponent.jsx  # Main component for CRUD operations
+│   │   ├── Header.jsx         # Displays the application header
+│   │   ├── UserForm.jsx       # Handles user creation and updates
+│   │   ├── UserTable.jsx      # Displays the list of users
+│   │   └── UserComponent.jsx  # Main container for the user management page
 │   ├── App.css                # Global styles
 │   ├── App.jsx                # Main App component
 │   ├── createClient.js        # Supabase client initialization

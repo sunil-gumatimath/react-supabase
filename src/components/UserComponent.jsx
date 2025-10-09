@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../createClient.js';
-import { FaEdit, FaTrash, FaPlus, FaSave, FaTimes } from 'react-icons/fa';
+import Header from './Header';
+import UserForm from './UserForm';
+import UserTable from './UserTable';
 
 const UserComponent = () => {
   const [users, setUsers] = useState([]);
@@ -128,99 +130,21 @@ const UserComponent = () => {
   return (
     <div className={loading ? 'loading-state' : ''}>
       <div className="container">
-        <header>
-          <h1>User Management</h1>
-          <p>Manage your users with create, read, update, and delete operations</p>
-        </header>
-
-        <section className="form-section">
-          <h2 className="form-title">
-            {editingId ? 'Edit User' : 'Add New User'}
-          </h2>
-          <form onSubmit={editingId ? updateUser : createUser}>
-            <input
-              type="text"
-              placeholder="Enter name"
-              name="name"
-              value={user.name}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              type="number"
-              placeholder="Enter age"
-              name="age"
-              value={user.age}
-              onChange={handleChange}
-              required
-            />
-
-            <div className="button-group">
-              <button type="submit" disabled={loading}>
-                {loading ? (
-                  editingId ? 'Updating...' : 'Creating...'
-                ) : (
-                  <>
-                    {editingId ? <FaSave /> : <FaPlus />}
-                    {editingId ? 'Update' : 'Create'}
-                  </>
-                )}
-              </button>
-
-              {editingId && (
-                <button type="button" className="cancel-btn" onClick={cancelEdit}>
-                  <FaTimes /> Cancel
-                </button>
-              )}
-            </div>
-          </form>
-
-          {error && (
-            <div className="error-message">
-              ⚠️ {error}
-            </div>
-          )}
-        </section>
-
-        <section className="table-section">
-          <h2 className="table-title">All Users</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((userData) => (
-                <tr key={userData.id}>
-                  <td>{userData.id}</td>
-                  <td>{userData.name}</td>
-                  <td>{userData.age}</td>
-                  <td>
-                    <div className="action-buttons">
-                      <button
-                        className="action-btn edit"
-                        onClick={() => startEdit(userData)}
-                      >
-                        <FaEdit /> Edit
-                      </button>
-                      <button
-                        className="action-btn delete"
-                        onClick={() => deleteUser(userData.id)}
-                      >
-                        <FaTrash /> Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
+        <Header />
+        <UserForm
+          user={user}
+          editingId={editingId}
+          loading={loading}
+          handleChange={handleChange}
+          handleSubmit={editingId ? updateUser : createUser}
+          cancelEdit={cancelEdit}
+        />
+        {error && (
+          <div className="error-message">
+            ⚠️ {error}
+          </div>
+        )}
+        <UserTable users={users} startEdit={startEdit} deleteUser={deleteUser} />
       </div>
     </div>
   );
