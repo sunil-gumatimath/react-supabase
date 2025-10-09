@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../createClient.js';
+import { FaEdit, FaTrash, FaPlus, FaSave, FaTimes } from 'react-icons/fa';
 
 const UserComponent = () => {
   const [users, setUsers] = useState([]);
@@ -157,15 +158,19 @@ const UserComponent = () => {
 
             <div className="button-group">
               <button type="submit" disabled={loading}>
-                {loading
-                  ? (editingId ? 'Updating...' : 'Creating...')
-                  : (editingId ? 'Update' : 'Create')
-                }
+                {loading ? (
+                  editingId ? 'Updating...' : 'Creating...'
+                ) : (
+                  <>
+                    {editingId ? <FaSave /> : <FaPlus />}
+                    {editingId ? 'Update' : 'Create'}
+                  </>
+                )}
               </button>
 
               {editingId && (
                 <button type="button" className="cancel-btn" onClick={cancelEdit}>
-                  Cancel
+                  <FaTimes /> Cancel
                 </button>
               )}
             </div>
@@ -201,13 +206,13 @@ const UserComponent = () => {
                         className="action-btn edit"
                         onClick={() => startEdit(userData)}
                       >
-                        Edit
+                        <FaEdit /> Edit
                       </button>
                       <button
                         className="action-btn delete"
                         onClick={() => deleteUser(userData.id)}
                       >
-                        Delete
+                        <FaTrash /> Delete
                       </button>
                     </div>
                   </td>

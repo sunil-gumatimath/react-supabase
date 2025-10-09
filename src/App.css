@@ -91,6 +91,9 @@ input:focus {
 }
 
 button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 12px 20px;
     background: #3b82f6;
     color: #ffffff;
@@ -214,6 +217,7 @@ table tbody tr:last-child td {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
+    gap: 6px;
 }
 
 .action-btn.delete {
@@ -240,6 +244,22 @@ table tbody tr:last-child td {
 .loading-state {
     opacity: 0.7;
     pointer-events: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-section,
+.table-section {
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 /* Responsive Design */

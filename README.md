@@ -1,60 +1,85 @@
-# React Supabase CRUD
+# React + Supabase CRUD Application
 
-A simple React application with Supabase integration for CRUD operations on users.
+A modern and stylish React application that demonstrates Create, Read, Update, and Delete (CRUD) operations using Supabase as the backend.
 
 ## Features
 
-- React 19 with Vite
-- Supabase database integration
-- User management (Create, Read, Update, Delete operations with form handling)
-- Modern React hooks (useState, useEffect)
-- Dark theme UI with minimal styling
-- Form validation and error handling
+- **React 18 & Vite:** Fast development and bundling.
+- **Supabase Integration:** Seamlessly connects to a Supabase backend for database operations.
+- **Complete CRUD Functionality:** Full user management capabilities.
+- **Modern UI/UX:** A sleek dark theme with responsive design, enhanced with icons from `react-icons`.
+- **State Management:** Utilizes React hooks (`useState`, `useEffect`) for efficient state management.
+- **Error Handling:** Displays user-friendly error messages.
+- **Animations:** Subtle animations for a better user experience.
 
-## Setup
+## Tech Stack
 
-1. Install dependencies:
-```bash
-bun install
-```
+- **Frontend:** React, Vite
+- **Backend:** Supabase
+- **Styling:** CSS with a custom dark theme
+- **Icons:** `react-icons`
 
-2. Set up environment variables:
-Create a `.env` file in the root directory with your Supabase credentials:
-```
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+## Getting Started
 
-3. Create a `users` table in your Supabase database with appropriate columns (id, name, email, etc.)
+### Prerequisites
 
-4. Make sure your Supabase table has Row Level Security (RLS) properly configured if you want to read data
+- Node.js and bun installed.
+- A Supabase account and project.
 
-## Development
+### Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/sunil-gumatimath/react-supabase.git
+    cd react-supabase-curd
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    bun install
+    ```
+
+3.  **Set up environment variables:**
+    Create a `.env` file in the root of your project and add your Supabase URL and Anon Key.
+
+    ```
+    VITE_SUPABASE_URL=your_supabase_url
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
+
+4.  **Set up your Supabase table:**
+    Create a `users` table in your Supabase project with the following columns:
+    - `id` (int8, primary key)
+    - `name` (text)
+    - `age` (int8)
+
+    Ensure that Row Level Security (RLS) is configured correctly for your table to allow data access.
+
+### Running the Application
 
 Start the development server:
+
 ```bash
 bun run dev
 ```
 
-## Build
-
-Build for production:
-```bash
-bun run build
-```
+The application will be available at `http://localhost:5173`.
 
 ## Project Structure
 
-- `src/App.jsx` - Main application component
-- `src/components/UserComponent.jsx` - User management component
-- `src/createClient.js` - Supabase client configuration
-
-## Recent Fixes
-
-- Fixed async/await issue in UserComponent where Supabase queries weren't properly awaited
-- Added dependency array to useEffect to prevent infinite re-renders
-- Ensure proper async handling when working with Supabase APIs
-
-## Note
-
-This project includes complete CRUD operations (Create, Read, Update, Delete) for user management. The application features a complete dark theme UI with proper form handling and error management.
+```
+/
+├── public/
+│   └── ...
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   └── UserComponent.jsx  # Main component for CRUD operations
+│   ├── App.css                # Global styles
+│   ├── App.jsx                # Main App component
+│   ├── createClient.js        # Supabase client initialization
+│   └── main.jsx               # Entry point
+├── .env.example               # Environment variable example
+├── index.html
+├── package.json
+└── README.md
