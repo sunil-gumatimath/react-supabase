@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../createClient.js';
-import Header from './Header';
 import UserForm from './UserForm';
 import UserTable from './UserTable';
 
@@ -129,23 +128,20 @@ const UserComponent = () => {
 
   return (
     <div className={loading ? 'loading-state' : ''}>
-      <div className="container">
-        <Header />
-        <UserForm
-          user={user}
-          editingId={editingId}
-          loading={loading}
-          handleChange={handleChange}
-          handleSubmit={editingId ? updateUser : createUser}
-          cancelEdit={cancelEdit}
-        />
-        {error && (
-          <div className="error-message">
-            ⚠️ {error}
-          </div>
-        )}
-        <UserTable users={users} startEdit={startEdit} deleteUser={deleteUser} />
-      </div>
+      <UserForm
+        user={user}
+        editingId={editingId}
+        loading={loading}
+        handleChange={handleChange}
+        handleSubmit={editingId ? updateUser : createUser}
+        cancelEdit={cancelEdit}
+      />
+      {error && (
+        <div className="error-message">
+          ⚠️ {error}
+        </div>
+      )}
+      <UserTable users={users} startEdit={startEdit} deleteUser={deleteUser} />
     </div>
   );
 }
